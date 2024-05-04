@@ -1,12 +1,11 @@
 import "./App.css";
-
-import { useEffect, useState } from "react";
+import Calendar from "./Calendar";
 
 function App() {
 
   return (
-    <div className="grid grid-cols-3 gap-4">
-      React + TS + TailwindCSS + Express
+    <div>
+      <Calendar />
     </div>
   );
 }
