@@ -1,5 +1,7 @@
 import React from 'react';
 
+import './YearSelectView.css';
+
 const YearSelectView: React.FC<{ selectedYear: number, onChange: (year: number) => void }> = ({ selectedYear, onChange }) => {
     const handleYearChange = (increment: number) => {
         const newYear = selectedYear + increment;

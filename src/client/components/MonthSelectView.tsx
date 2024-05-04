@@ -2,6 +2,8 @@ import React from 'react';
 
 import { months } from '../constants';
 
+import './MonthSelectView.css';
+
 const MonthSelectView: React.FC<{ selectedMonth: number, onChange: (month: number) => void }> = ({ selectedMonth, onChange }) => {
     
     const handleMonthChange = (increment: number) => {
