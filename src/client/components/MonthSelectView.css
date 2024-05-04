@@ -1,0 +1,21 @@
+.month-select-view {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.month-select-view button {
+    padding: 5px 10px;
+    margin: 0 5px;
+    border: none;
+    background-color: #4b5563;
+    color: white;
+    cursor: pointer;
+}
+
+.month-select-view span {
+    font-size: 18px;
+    font-weight: bold;
+}
+  
