@@ -2,6 +2,8 @@ import Reac, { useState } from 'react';
 import CalendarHeader from './components/CalendarHeader';
 import ContentView from './components/ContentView';
 
+import { holidayArray } from './constants';
+
 const Calendar: React.FC = () => {
     const [currentDate, setCurrentDate] = useState(new Date());
     const [selectedMonth, setSelectedMonth] = useState(currentDate.getMonth());
@@ -34,7 +36,7 @@ const Calendar: React.FC = () => {
             <ContentView 
                 year={selectedYear}
                 month={selectedMonth}
-                holidays={[new Date()]}
+                holidays={holidayArray}
                 onDateClick={handleDateClick}
             />
         </div>
