@@ -24,7 +24,7 @@ for (let i = 1970; i < 2051; i++) {
     ChristmasDay.push(new Date(i, 11, 25));
 }
 
-export const holidayArray: USGovHoliday[] = [...NewYearsDay, ...MartinLutherKingJrDay, ...presidentsDay, ...MemorialDay, ...IndependenceDay, ...LaborDay, ...ColumbusDay, ...VeteransDay, ...ThanksgivingDay, ...ChristmasDay]
+export const holidayArray: USGovHoliday[] = [...NewYearsDay, ...MartinLutherKingJrDay, ...presidentsDay, ...MemorialDay, ...IndependenceDay, ...LaborDay, ...ColumbusDay, ...VeteransDay, ...ThanksgivingDay, ...ChristmasDay];
 
 export const months = [
     'January', 'February', 'March', 'April',

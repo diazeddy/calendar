@@ -24,3 +24,9 @@ export const saveNote = (req: RequestWithNote, res: Response) => {
     notes[date] = note;
     res.status(201).json({ message: 'Note saved successfully' });
 };
+
+export const updateNote = (req: RequestWithNote, res: Response) => {
+    const { date, note } = req.body;
+    notes[date] = note;
+    res.status(200).json({ message: 'Note updated successfully' });
+}

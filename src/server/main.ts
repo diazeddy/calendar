@@ -1,7 +1,6 @@
 import express from "express";
 import ViteExpress from "vite-express";
 import bodyParser from "body-parser";
-import router from "./routes/api";
 
 import notesRoutes from "./routes/notesRoutes";
 import exportRoutes from "./routes/exportRoutes";

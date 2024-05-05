@@ -1,29 +1,51 @@
 import React from 'react';
-import { format, isSameMonth, isWeekend, isSameDay } from 'date-fns';
+import { isSameMonth, isWeekend, isSameDay } from 'date-fns';
 
 import './ContentView.css';
 
-const ContentView: React.FC<{ year: number, month: number, holidays: Date[], onDateClick: (date: Date) => void }> = ({ year, month, holidays, onDateClick }) => {
-    const totalDaysInMonth = new Date(year, month + 1, 0).getDate();
-    const firstDayOfMonth = new Date(year, month, 1).getDay();
-
+const ContentView: React.FC<{ year: number, month: number, holidays: Date[], notes: {[date: string]: string}, onDateClick: (date: Date) => void }> = ({ year, month, holidays, notes, onDateClick }) => {
     const renderDays = () => {
         const days = [];
-        for (let i = 0; i < firstDayOfMonth; i++) {
-            days.push(<div key={`empty-${i}`} className="empty-day"></div>);
+        const firstDay = new Date(year, month, 1).getDay();
+        const lastDayOfPrevMonth = new Date(year, month, 0).getDate();
+        const lastDay = new Date(year, month + 1, 0).getDate();
+
+        // Render days from previous month
+        for (let i = firstDay - 1; i >= 0; i--) {
+            const prevDate = lastDayOfPrevMonth - i;
+            const currentDate = new Date(year, month - 1, prevDate);
+            days.push(
+                <div key={`inactive-${prevDate}`} className="inactive-day">
+                    {prevDate}
+                </div>
+            );
         }
-        for (let i = 1; i <= totalDaysInMonth; i++) {
+
+        for (let i = 1; i <= lastDay; i++) {
             const currentDate = new Date(year, month, i);
             const isHoliday = holidays.some(holiday => isSameDay(holiday, currentDate));
             const isActive = isSameMonth(currentDate, new Date(year, month));
             const isWeekendDay = isWeekend(currentDate);
 
-            const dayClasses = `day ${isWeekendDay ? 'weekend' : ''} ${!isActive ? 'inactive' : ''} ${isHoliday ? 'holiday' : ''}`;
-            
+            const note = notes[currentDate.toISOString().split('T')[0]];
+            const hasNote = !!note;
+
+            const dayClasses = `day ${isWeekendDay ? 'weekend' : ''} ${!isActive ? 'inactive' : ''} ${isHoliday ? 'holiday' : ''} ${hasNote ? 'with-note' : ''}`;
             days.push(
-            <div key={`day-${i}`} className={dayClasses} onClick={() => isActive && onDateClick(currentDate)}>
-                {i}
-            </div>
+                <div key={`day-${i}`} className={dayClasses} onClick={() => isActive && onDateClick(currentDate)}>
+                    {i}
+                </div>
+            );
+        }
+
+        // Render days from next month
+        const lastDayOfMonth = new Date(year, month, lastDay).getDay();
+        for (let i = 1; i < 14 - lastDayOfMonth; i++) {
+            const nextDate = new Date(year, month + 1, i);
+            days.push(
+                <div key={`inactive-next-${i}`} className="inactive-day">
+                    {i}
+                </div>
             );
         }
         return days;
