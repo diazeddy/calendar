@@ -13,7 +13,7 @@ const CalendarHeader: React.FC<CalendarHeaderProps> = ({ currentDate, handleClic
 
     return (
         <div className='calendar-header' onClick={handleClick}>
-            <h1>{formattedDate}</h1>
+            <h1 style={{ color: "red", cursor: "pointer" }}>{formattedDate}</h1>
         </div>
     );
 };

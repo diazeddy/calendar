@@ -12,18 +12,21 @@ In the calendar, dates with notes taken should be displayed with green badge. (N
 - In the footer, there is "Export Notes" button to fetch notes from the backend and save notes for the selected month as JSON file.
 
 ## Screenshots
-[View Screenshots](/screenshots)
-
-## Requirements
+![alt text](/src/screenshots/image_main.png)
+![alt text](/src/screenshots/image.png)
+![alt text](/src/screenshots/image-1.png)
+![alt text](/src/screenshots/image-2.png)
+![alt text](/src/screenshots/image-3.png)
+![alt text](/src/screenshots/image-4.png)
 
 
 ## Frontend
 ### Tech Stacks
 - React
 - TypeScript
-- HTML2Canvas
-- Axios
+- TailwindCSS
 - Vite
+- Date-fns
 
 ### Features
 - Border Radius, Box Shadow, Text Shadow, CSS Cursor Generators
@@ -38,10 +41,12 @@ In the calendar, dates with notes taken should be displayed with green badge. (N
 ### Tech Stacks
 - Node.js
 - Express.js
-- CORS module
 
 ### API Features
-- `/api/capture`: Receives image data (Canvas DataURI) from frontend
+- GET `/api/notes/:year/:month`: Fetch the data with search queries like year and month.
+- POST `/api/notes`: Save the Date and Note taken on that Date
+- PUT `/api/notes`: Update the Date and Note taken on that Date
+- GET `/api/export/:year/:month`: Fetch the data with search queries like year and month for exporting purpose.
 
 ## Installation
 
@@ -56,15 +61,8 @@ npm install
 
 3. Run the program
 
-- Front-end
-
 ```shell
 npm run dev
 ```
 
-- Back-end
-```shell
-node server.js
-```
-
-4. Open your web browser and visit `http://127.0.0.1:5173/` to see the application running.
+4. Open your web browser and visit `http://localhost:3000/` to see the application running.
