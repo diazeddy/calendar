@@ -9,7 +9,7 @@ import YearGrid from './YearGrid/YearGrid';
 
 import axios from 'axios';
 
-import { holidayArray } from './constants';
+import { fetchUSHolidays } from './api';
 
 interface ItemProps {
     date: string;
@@ -26,6 +26,9 @@ const Calendar: React.FC = () => {
     
     // Conversion Option
     const [viewOption, setViewOption] = useState<number>(0);
+
+    // US Holiday
+    const [holidays, setHolidays] = useState<Date[]>([]);
 
     useEffect(() => {
         fetchNotes();
@@ -105,6 +108,14 @@ const Calendar: React.FC = () => {
         setSelectedMonth(newMonth);
     }
 
+    useEffect(() => {
+        const updateHolidays = async () => {
+            const newHolidays = await fetchUSHolidays(selectedYear);
+            setHolidays(newHolidays);
+        };
+        updateHolidays();
+    }, [selectedYear])
+
     const handleMonthClick = (newMonth: number) => {
         setSelectedMonth(newMonth);
         setViewOption(0); // Go back to DateView
@@ -154,7 +165,7 @@ const Calendar: React.FC = () => {
             <ContentView 
                 year={selectedYear}
                 month={selectedMonth}
-                holidays={holidayArray}
+                holidays={holidays}
                 notes={notes}
                 onDateClick={handleDateClick}
             />) : viewOption === 1 ? (
