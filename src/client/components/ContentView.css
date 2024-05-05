@@ -1,0 +1,68 @@
+.content-view {
+  gap: 5px;
+}
+
+.days {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+}
+
+.day {
+  text-align: center;
+  padding: 10px;
+  background-color: #f3f4f6;
+}
+
+.dates {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+}
+
+.day.inactive {
+  color: #d1d5db;
+}
+
+.day.holiday {
+  color: red;
+}
+
+.day.weekend {
+  background-color: #fde68a;
+}
+
+.day:hover {
+  background-color: #e5e7eb;
+  cursor: pointer;
+}
+
+.empty-day {
+  visibility: hidden;
+}
+
+.day.with-note::after {
+  content: '';
+  display: inline-block;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background-color: green;
+  position: relative;
+  top: 15px;
+  right: -20px;
+}
+
+.day.with-note {
+  cursor: pointer;
+}
+
+
+.day.with-note:hover {
+  background-color: #e5e7eb;
+}
+
+.inactive-day {
+  text-align: center;
+  padding: 10px;
+  color: #999; /* Color for disabled days */
+  pointer-events: none; /* Disable click events */
+}
